@@ -1,5 +1,5 @@
-class Nameable 
-  def correct_name 
-    raise NotImplementedError.new "from nameable"
-  end 
+class Nameable
+  def correct_name
+    raise NotImplementedError, 'from nameable'
+  end
 end
