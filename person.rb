@@ -1,4 +1,6 @@
-class Person
+require_relative './nameable.rb'
+
+class Person < Nameable
   attr_reader :id
   attr_accessor :name, :age
 
@@ -15,6 +17,10 @@ class Person
     false
   end
 
+  def correct_name
+    @name
+  end
+
   private
 
   def of_age?
@@ -22,4 +28,10 @@ class Person
 
     false
   end
+
+  
+
 end
+
+person = Person.new 30, 'David'
+puts person.correct_name
