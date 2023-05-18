@@ -13,6 +13,10 @@ class Person < Nameable
     @rentals = []
   end
 
+  def rent_book(date, book)
+    Rental.new(date, book, self)
+  end
+
   def can_use_services?
     return true if of_age? || @parent_permission
 
