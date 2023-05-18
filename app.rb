@@ -1,4 +1,8 @@
 class App
+
+  def menu
+    puts "Welcome to School Library App!\nHola"
+  end
   def all_books 
     'All books'
   end
@@ -24,7 +28,7 @@ class App
       puts 'Thanks for using this app!'
     end
     while option != '7'
-      puts 'Please enter an option:'
+      puts menu
       option = gets.chomp
       if option == '7' 
         puts 'Thanks for using this app!'
