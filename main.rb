@@ -38,7 +38,7 @@ class Main
   def create_person
     print 'Do you want to create a student (1) or a teacher (2)?: '
     option = gets.chomp
-    case option 
+    case option
     when '1'
       create_student
     when '2'
@@ -91,7 +91,7 @@ class Main
       puts "#{index}) #{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
     person = @people[gets.chomp.to_i]
-    print "Date (YYYY/MM/DD): "
+    print 'Date (YYYY/MM/DD): '
     date = gets.chomp
     book.add_rental date, person
 
@@ -101,7 +101,7 @@ class Main
   def all_rentals
     print 'ID of person: '
     id = gets.chomp.to_i
-    filtered = @people.select {|person| person.id == id}
+    filtered = @people.select { |person| person.id == id }
     puts "Person's name: #{filtered[0].name}"
     filtered[0].rentals.each do |rental|
       puts "Book name: #{rental.book.title}, date: #{rental.date}"
@@ -123,10 +123,9 @@ class Main
   private
 
   def get_permission(string)
-    if string.downcase == 'y' 
-      return true 
-    end
-    return false
+    return true if string.downcase == 'y'
+
+    false
   end
 
   def select_option_main(option)
