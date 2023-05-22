@@ -1,4 +1,4 @@
-require_relative './app.rb'
+require_relative './app'
 
 class Main
   def initialize
@@ -45,7 +45,6 @@ class Main
       puts @app.all_rentals
     end
   end
-
 end
 
 main = Main.new
