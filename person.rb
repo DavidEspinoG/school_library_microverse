@@ -1,6 +1,4 @@
-require_relative './nameable'
-
-class Person < Nameable
+class Person
   attr_reader :id
   attr_accessor :name, :age, :rentals
 
@@ -15,23 +13,5 @@ class Person < Nameable
 
   def rent_book(date, book)
     Rental.new(date, book, self)
-  end
-
-  def can_use_services?
-    return true if of_age? || @parent_permission
-
-    false
-  end
-
-  def correct_name
-    @name
-  end
-
-  private
-
-  def of_age?
-    return true if @age >= 18
-
-    false
   end
 end

@@ -1,9 +1,10 @@
-require_relative './book'
-require_relative './student'
-require_relative './teacher'
-require 'pry'
+require_relative './app.rb'
 
 class Main
+  # def initialize
+  #   @app = App.new
+  # end
+
   def initialize
     @books = []
     @people = []
@@ -20,6 +21,41 @@ class Main
     message << "5 - Create a rental\n"
     message << "6 - List all rentals for a given person id\n"
     message << "7 - Exit\n"
+  end
+
+  def run
+    option = ''
+    while option != '7'
+      print menu
+      option = gets.chomp
+      puts 'Thanks for using this app' if option == '7'
+      select_option_main option
+    end
+  end
+
+  private
+
+  def select_option_main(option)
+    case option
+    when '1'
+      puts @app.all_books
+    when '2'
+      puts @app.all_people
+    when '3'
+      puts @app.create_person
+    when '4'
+      puts @app.create_book
+    when '5'
+      puts @app.create_rental
+    when '6'
+      puts @app.all_rentals
+    end
+  end
+
+  def get_permission(string)
+    return true if string.downcase == 'y'
+
+    false
   end
 
   def all_books
@@ -112,39 +148,6 @@ class Main
     nil
   end
 
-  def run
-    option = ''
-    while option != '7'
-      print menu
-      option = gets.chomp
-      puts 'Thanks for using this app' if option == '7'
-      select_option_main option
-    end
-  end
-
-  private
-
-  def get_permission(string)
-    return true if string.downcase == 'y'
-    false
-  end
-
-  def select_option_main(option)
-    case option
-    when '1'
-      puts all_books
-    when '2'
-      puts all_people
-    when '3'
-      puts create_person
-    when '4'
-      puts create_book
-    when '5'
-      puts create_rental
-    when '6'
-      puts all_rentals
-    end
-  end
 end
 
 main = Main.new
