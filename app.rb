@@ -24,8 +24,7 @@ class App
   end
 
   def create_person
-    print 'Do you want to create a student (1) or a teacher (2)?: '
-    option = gets.chomp
+    option = request_option 'Do you want to create a student (1) or a teacher (2)?: '
     case option
     when '1'
       create_student
@@ -35,34 +34,26 @@ class App
   end
 
   def create_student
-    print 'Age: '
-    age = gets.chomp
-    print 'Name: '
-    name = gets.chomp
-    print 'Has parent permission? [Y/N]: '
-    permission = gets.chomp
+    age = request_option 'Age: '
+    name = request_option 'Name: '
+    permission = request_option 'Has parent permission? [Y/N]: '
     student = Student.new age, name, parent_permission: get_permission(permission)
     @people.push(student)
     nil
   end
 
   def create_teacher
-    print 'Age: '
-    age = gets.chomp
-    print 'Name: '
-    name = gets.chomp
-    print 'Specialization: '
-    specialization = gets.chomp
+    age = request_option 'Age: '
+    name = request_option 'Name: '
+    specialization = request_option 'Specialization: '
     teacher = Teacher.new age, specialization, name
     @people.push(teacher)
     nil
   end
 
   def create_book
-    print 'Title: '
-    title = gets.chomp
-    print 'Author: '
-    author = gets.chomp
+    title = request_option 'Title: '
+    author = request_option 'Author: '
     book = Book.new title, author
     @books.push(book)
     puts 'Book created successfully'
@@ -87,10 +78,8 @@ class App
   end
 
   def all_rentals
-    print 'ID of person: '
-    id = gets.chomp.to_i
+    id = request_option('ID of person: ').to_i
     filtered = @people.select { |person| person.id == id }
-    # binding.pry
     puts "Person's name: #{filtered[0].name}"
     filtered[0].rentals.each do |rental|
       puts "Book name: #{rental.book.title}, date: #{rental.date}"
@@ -105,5 +94,10 @@ class App
     return true if string.downcase == 'y'
 
     false
+  end
+
+  def request_option(message)
+    print message
+    gets.chomp
   end
 end
