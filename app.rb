@@ -3,7 +3,7 @@ require_relative './student'
 require_relative './teacher'
 
 class App
- 
+
   def initialize
     @books = []
     @people = []
