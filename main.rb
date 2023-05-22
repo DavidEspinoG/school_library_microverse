@@ -1,6 +1,7 @@
 require_relative './book'
 require_relative './student'
 require_relative './teacher'
+require 'pry'
 
 class Main
   def initialize
@@ -102,6 +103,7 @@ class Main
     print 'ID of person: '
     id = gets.chomp.to_i
     filtered = @people.select { |person| person.id == id }
+    # binding.pry
     puts "Person's name: #{filtered[0].name}"
     filtered[0].rentals.each do |rental|
       puts "Book name: #{rental.book.title}, date: #{rental.date}"
@@ -124,7 +126,6 @@ class Main
 
   def get_permission(string)
     return true if string.downcase == 'y'
-
     false
   end
 
